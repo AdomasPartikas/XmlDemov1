@@ -18,6 +18,10 @@ namespace XmlDemo1
             vardas.InnerText = "Jonas";
             asmuo.AppendChild(vardas);
 
+            var pavardė = asmuoDocument.CreateElement("Pavardė");
+            pavardė.InnerText = "Jonaitis";
+            asmuo.AppendChild(pavardė);
+
             Console.WriteLine(asmuoDocument.OuterXml);
             Console.ReadKey();
         }
