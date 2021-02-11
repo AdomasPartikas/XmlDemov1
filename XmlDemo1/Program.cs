@@ -15,9 +15,9 @@ namespace XmlDemo1
             var asmenys = asmuoDocument.CreateElement("Asmenys");
             asmuoDocument.AppendChild(asmenys);
 
+            var r = new Random();
             for (int i = 0; i < 10; i++)
             {
-                var r = new Random();
 
                 XmlElement asmuo = asmuoDocument.CreateElement("Asmuo");
                 //asmuoDocument.AppendChild(asmuo);
@@ -37,14 +37,13 @@ namespace XmlDemo1
             Console.WriteLine(asmuoDocument.OuterXml);
 
 
-            //var asmuoReadDocument = new XmlDocument();
-            //asmuoReadDocument.LoadXml(asmuoDocument.OuterXml);
+            var asmenysReadDocument = new XmlDocument();
+            asmenysReadDocument.LoadXml(asmuoDocument.OuterXml);
 
-            //var vardasRead = asmuoReadDocument.SelectSingleNode("/Asmuo/Vardas").InnerText;
-            //var amziusRead = asmuoReadDocument.SelectSingleNode("/Asmuo").Attributes["Amzius"].Value;
-            //Console.WriteLine(vardasRead);
-            //Console.WriteLine(amziusRead);
-
+            foreach (XmlNode asmuo in asmenysReadDocument.SelectNodes("/Asmenys/Asmuo"))
+            {
+                Console.WriteLine(asmuo.SelectSingleNode("Vardas").InnerText);
+            }
 
             Console.ReadKey();
         }
