@@ -12,26 +12,38 @@ namespace XmlDemo1
         static void Main(string[] args)
         {
             XmlDocument asmuoDocument = new XmlDocument();
-            XmlElement asmuo = asmuoDocument.CreateElement("Asmuo");
-            asmuoDocument.AppendChild(asmuo);
-            var vardas = asmuoDocument.CreateElement("Vardas");
-            vardas.InnerText = "Jonas";
-            asmuo.AppendChild(vardas);
+            var asmenys = asmuoDocument.CreateElement("Asmenys");
+            asmuoDocument.AppendChild(asmenys);
 
-            var pavardė = asmuoDocument.CreateElement("Pavardė");
-            pavardė.InnerText = "Jonaitis";
-            asmuo.AppendChild(pavardė);
+            for (int i = 0; i < 10; i++)
+            {
+                var r = new Random();
 
-            asmuo.SetAttribute("Amzius", "12");
+                XmlElement asmuo = asmuoDocument.CreateElement("Asmuo");
+                //asmuoDocument.AppendChild(asmuo);
+                var vardas = asmuoDocument.CreateElement("Vardas");
+                vardas.InnerText = "Jonas" + r.Next(1, 10);
+                asmuo.AppendChild(vardas);
+
+                var pavardė = asmuoDocument.CreateElement("Pavardė");
+                pavardė.InnerText = "Jonaitis" + r.Next(1, 10);
+                asmuo.AppendChild(pavardė);
+
+                asmuo.SetAttribute("Amzius", $"{r.Next(1, 10)}");
+
+                asmenys.AppendChild(asmuo);
+            }
+
+            Console.WriteLine(asmuoDocument.OuterXml);
 
 
-            var asmuoReadDocument = new XmlDocument();
-            asmuoReadDocument.LoadXml(asmuoDocument.OuterXml);
+            //var asmuoReadDocument = new XmlDocument();
+            //asmuoReadDocument.LoadXml(asmuoDocument.OuterXml);
 
-            var vardasRead = asmuoReadDocument.SelectSingleNode("/Asmuo/Vardas").InnerText;
-            var amziusRead = asmuoReadDocument.SelectSingleNode("/Asmuo").Attributes["Amzius"].Value;
-            Console.WriteLine(vardasRead);
-            Console.WriteLine(amziusRead);
+            //var vardasRead = asmuoReadDocument.SelectSingleNode("/Asmuo/Vardas").InnerText;
+            //var amziusRead = asmuoReadDocument.SelectSingleNode("/Asmuo").Attributes["Amzius"].Value;
+            //Console.WriteLine(vardasRead);
+            //Console.WriteLine(amziusRead);
 
 
             Console.ReadKey();
