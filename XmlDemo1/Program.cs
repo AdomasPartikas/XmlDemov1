@@ -24,7 +24,16 @@ namespace XmlDemo1
 
             asmuo.SetAttribute("Amzius", "12");
 
-            Console.WriteLine(asmuoDocument.OuterXml);
+
+            var asmuoReadDocument = new XmlDocument();
+            asmuoReadDocument.LoadXml(asmuoDocument.OuterXml);
+
+            var vardasRead = asmuoReadDocument.SelectSingleNode("/Asmuo/Vardas").InnerText;
+            var amziusRead = asmuoReadDocument.SelectSingleNode("/Asmuo").Attributes["Amzius"].Value;
+            Console.WriteLine(vardasRead);
+            Console.WriteLine(amziusRead);
+
+
             Console.ReadKey();
         }
     }
