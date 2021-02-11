@@ -22,6 +22,8 @@ namespace XmlDemo1
             pavardė.InnerText = "Jonaitis";
             asmuo.AppendChild(pavardė);
 
+            asmuo.SetAttribute("Amzius", "12");
+
             Console.WriteLine(asmuoDocument.OuterXml);
             Console.ReadKey();
         }
